@@ -11,6 +11,7 @@ includes:
   - authentication
   - pagination
   - errors
+  - users
 
 search: true
 ---
