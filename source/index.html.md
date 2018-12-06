@@ -5,7 +5,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - shell
 
 toc_footers:
-  - <a href='https://dringo.io'>Sign Up for a Dringo today!</a>
+  - <a href='https://github.com/dringo-repo/developers/issues'>Want to make suggestions?</a>
 
 includes:
   - authentication
