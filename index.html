@@ -248,9 +248,39 @@
                   </li>
               </ul>
           </li>
+          <li>
+            <a href="#users" class="toc-h1 toc-link" data-title="Users">Users</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-all-users" class="toc-h2 toc-link" data-title="Get All Users">Get All Users</a>
+                  </li>
+                  <li>
+                    <a href="#get-a-specific-user" class="toc-h2 toc-link" data-title="Get a Specific User">Get a Specific User</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#batch-users" class="toc-h1 toc-link" data-title="Batch Users">Batch Users</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#submitting-a-batch-of-changes" class="toc-h2 toc-link" data-title="Submitting a batch of changes">Submitting a batch of changes</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#receipts" class="toc-h1 toc-link" data-title="Receipts">Receipts</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-all-receipts" class="toc-h2 toc-link" data-title="Get All Receipts">Get All Receipts</a>
+                  </li>
+                  <li>
+                    <a href="#get-a-specific-receipt" class="toc-h2 toc-link" data-title="Get a Specific Receipt">Get a Specific Receipt</a>
+                  </li>
+              </ul>
+          </li>
       </ul>
         <ul class="toc-footer">
-            <li><a href='https://dringo.io'>Sign Up for a Dringo today!</a></li>
+            <li><a href='https://github.com/dringo-repo/developers/issues'>Want to make suggestions?</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
@@ -337,6 +367,301 @@ RateLimit-Reset: 1544130240
 <p><a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#5xx_Server_errors">list of 5xx server errors</a></p>
 <h2 id='404-not-found'>404 Not Found</h2>
 <p>API requests may 404 due to deleted or missing content.</p>
+<h1 id='users'>Users</h1><h2 id='get-all-users'>Get All Users</h2><pre class="highlight shell tab-shell"><code>curl <span class="s1">'https://example.dringo.io/api/users'</span>
+  -H <span class="s1">'Authorization: Token token=meowmeowmeow'</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"users"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Will"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Smith"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1540662498</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1540662498</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"emails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w"> </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"will@smith.co"</span><span class="p">,</span><span class="w"> </span><span class="s2">"primary"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w"> </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"prince@ofbelair.co"</span><span class="p">,</span><span class="w"> </span><span class="s2">"primary"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"national_admin"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"chapter_admin"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"chapter_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"alpha beta"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"university_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"University of California, Berkley"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"alumni"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"graduation_year"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1986"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"experiences"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"company"</span><span class="p">:</span><span class="w"> </span><span class="s2">"General Mills"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"null"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"start"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"end"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves all users.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>GET https://example.dringo.io/api/users?updated_at=1544135037&amp;ids=1,2,3</code></p>
+<h3 id='query-parameters'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>updated_at</td>
+<td>null</td>
+<td>Specify a <a href="https://en.wikipedia.org/wiki/Unix_time">Unix Epoch timestamp</a> to only return users updated after that timestamp.</td>
+</tr>
+<tr>
+<td>ids</td>
+<td>null</td>
+<td>A comma delaminated list of user ids (no spaces) which will limit results to only those ids.</td>
+</tr>
+</tbody></table>
+
+<aside class="success">
+Remember — a happy user is an authenticated user!
+</aside>
+<h2 id='get-a-specific-user'>Get a Specific User</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://example.dringo.io/api/users/2"</span>
+  -H <span class="s2">"Authorization: Token token=meowmeowmeow"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Will"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Smith"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1540662498</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1540662498</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"emails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"will@smith.co"</span><span class="p">,</span><span class="w"> </span><span class="s2">"primary"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"prince@ofbelair.co"</span><span class="p">,</span><span class="w"> </span><span class="s2">"primary"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"national_admin"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"chapter_admin"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"chapter_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"alpha beta"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"university_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"University of California, Berkley"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"alumni"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"graduation_year"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1986"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"experiences"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"company"</span><span class="p">:</span><span class="w"> </span><span class="s2">"General Mills"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"null"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"start"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"end"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves a specific user.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>GET https://example.dringo.io/api/users/&lt;id&gt;</code></p>
+<h3 id='url-parameters'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>The ID of the user to retrieve</td>
+</tr>
+</tbody></table>
+<h1 id='batch-users'>Batch Users</h1><h2 id='submitting-a-batch-of-changes'>Submitting a batch of changes</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://example.dringo.io/api/users/batch/update_or_create"</span>
+  -H <span class="s2">"Authorization: Token token=meowmeowmeow"</span>
+  -D <span class="s1">'{
+        changes: [
+          { "id": 1, "first_name": "Fresh", last_name: "Prince" },
+          { "first_name": "Carlton", last_name: "Banks" },
+        ]
+      }'</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"receipts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="s2">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"receipt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.dringo.io/api/receipts/1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="s2">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"receipt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.dringo.io/api/receipts/2"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves a specific receipt.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>POST https://example.dringo.io/api/users/batch/update_or_create</code></p>
+<h3 id='post-data'>POST Data</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>changes</td>
+<td>Array of JSON objects containing changes to be implemented.</td>
+</tr>
+</tbody></table>
+<h4 id='change-objects'>Change objects</h4>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>ID of the user to update. If left blank, Dringo will attempt to create a user.</td>
+</tr>
+<tr>
+<td>first_name</td>
+<td>String</td>
+<td>First name of user</td>
+</tr>
+<tr>
+<td>last_name</td>
+<td>String</td>
+<td>Last name of user</td>
+</tr>
+<tr>
+<td>emails</td>
+<td>Array</td>
+<td>List of email objects</td>
+</tr>
+<tr>
+<td>national_admin</td>
+<td>Boolean</td>
+<td>If true, the user will have national admin privileges</td>
+</tr>
+<tr>
+<td>chapter_admin</td>
+<td>Boolean</td>
+<td>If true, the user will have chapter admin privileges</td>
+</tr>
+<tr>
+<td>chapter_name</td>
+<td>String</td>
+<td>Name of the user&#39;s chapter</td>
+</tr>
+<tr>
+<td>university_name</td>
+<td>String</td>
+<td>Name of the user&#39;s university</td>
+</tr>
+<tr>
+<td>alumni</td>
+<td>Boolean</td>
+<td>If true, the user will be marked as an alumni</td>
+</tr>
+<tr>
+<td>graduation_year</td>
+<td>String</td>
+<td>Graduation year of the user, must be 4 characters</td>
+</tr>
+<tr>
+<td>experiences</td>
+<td>Array</td>
+<td>List of experience objects</td>
+</tr>
+</tbody></table>
+<h1 id='receipts'>Receipts</h1><h2 id='get-all-receipts'>Get All Receipts</h2><pre class="highlight shell tab-shell"><code>curl <span class="s1">'https://example.dringo.io/api/receipts'</span>
+  -H <span class="s1">'Authorization: Token token=meowmeowmeow'</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"receipts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="s2">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"receipt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.dringo.io/api/receipts/1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves all receipts.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>GET https://example.dringo.io/api/receipts?updated_at=1544135037&amp;ids=1,2,3</code></p>
+<h3 id='query-parameters'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ids</td>
+<td>null</td>
+<td>A comma delaminated list of receipt ids (no spaces) which will limit results to only those ids.</td>
+</tr>
+</tbody></table>
+
+<aside class="success">
+Remember — a happy receipt is an authenticated receipt!
+</aside>
+<h2 id='get-a-specific-receipt'>Get a Specific Receipt</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://example.dringo.io/api/receipts/2"</span>
+  -H <span class="s2">"Authorization: Token token=meowmeowmeow"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"failed"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Email can't be blank"</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"receipt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.dringo.io/api/receipts/2"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves a specific receipt.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>GET https://example.dringo.io/api/receipts/&lt;id&gt;</code></p>
+<h3 id='url-parameters'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>The ID of the receipt to retrieve</td>
+</tr>
+</tbody></table>
 
       </div>
       <div class="dark-box">
