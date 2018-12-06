@@ -12,6 +12,8 @@ includes:
   - pagination
   - errors
   - users
+  - batch_users
+  - receipts
 
 search: true
 ---
