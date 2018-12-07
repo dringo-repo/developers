@@ -1,10 +1,15 @@
 # Batch Users
 
+The Dringo API supports asynchronous updating and/or creating to efficiently handle large numbers of users. Asynchronous updating/creating consists of two stages:
+
+1. Submitting a batch of changes
+2. Checking the progress using [receipts](#receipts)
+
 ## Submitting a batch of changes
 
 ```shell
-curl "https://example.dringo.io/api/users/batch/update_or_create"
-  -H "Authorization: Token token=meowmeowmeow"
+curl -X POST 'https://example.dringo.io/api/users/batch/update_or_create'
+  -H 'Authorization: Token token=meowmeowmeow'
   -D '{
         changes: [
           { "id": 1, "first_name": "Fresh", last_name: "Prince" },
@@ -67,3 +72,33 @@ university_name | String | Name of the user's university
 alumni | Boolean | If true, the user will be marked as an alumni
 graduation_year | String | Graduation year of the user, must be 4 characters
 experiences | Array | List of experience objects
+
+## Handling submission errors
+
+The Batch User endpoint handles errors related to the user at a later time. However, it performs basic parameter validation at submission time.
+
+```shell
+curl -X POST 'https://example.dringo.io/api/users/batch/update_or_create'
+  -H 'Authorization: Token token=meowmeowmeow'
+  -d '{
+        "changes": []
+      }'
+```
+
+Requests must contain a changes key that is a non-empty array. Additionally, there is a 100 document limit on the number of documents that may be submitted in a single batch as well as a maximum request size of 10 megabytes.
+
+> The above command returns will fail with the following JSON response:
+
+```json
+{
+  "errors": ["Changes can't be blank"]
+}
+```
+
+If a request cannot be validated, an error response will be returned.
+
+### Possible errors
+
+- `Changes can't be blank`
+- `Changes requested must be fewer than 100`
+- `Changes requested must be smaller than 10mb`

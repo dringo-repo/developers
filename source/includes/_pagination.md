@@ -1,21 +1,22 @@
 # Pagination
 
 ``` shell
-curl 'https://example.dringo.io/api/users?page=2&per_page=100'
+curl -X GET 'https://example.dringo.io/api/users?page=2&per_page=100'
 ```
 
-Most collection APIs paginate their results and will be paginated to 30 items by default.  For some resources, you can also set a custom page size up to 100 with the `?per_page` parameter.
+Most collection APIs paginate their results and will be paginated to 10 items by default.  For some resources, you can also set a custom page size up to 100 with the `?per_page` parameter.
 
 ## Link Header
 
-The Dringo API follows the [RFC5988 convention](https://tools.ietf.org/html/rfc5988) of using the `Link` header to provide URLs for the `next` page. Follow this convention to retrieve the next page of data—please don't build the pagination URLs yourself!
+```
+X-Total-Count: 3400
+Link: <https://example.dringo.io/api/users?page=15&per_page=100>; rel="next",
+  <https://example.dringo.io/api/users?page=34&per_page=100>; rel="last",
+  <https://example.dringo.io/api/users?page=1&per_page=100>; rel="first",
+  <https://example.dringo.io/api/users?page=13&per_page=100>; rel="prev"
+```
 
-```
-Link: <https://example.dringo.io/api/users?page=15>; rel="next",
-  <https://example.dringo.io/api/users?page=34>; rel="last",
-  <https://example.dringo.io/api/users?page=1>; rel="first",
-  <https://example.dringo.io/api/users?page=13>; rel="prev"
-```
+The Dringo API follows the [RFC5988 convention](https://tools.ietf.org/html/rfc5988) of using the `Link` header to provide URLs for the `next` page. Follow this convention to retrieve the next page of data—please don't build the pagination URLs yourself!
 
 The possible `rel` values are:
 

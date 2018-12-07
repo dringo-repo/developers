@@ -3,7 +3,7 @@
 ## Get All Users
 
 ```shell
-curl 'https://example.dringo.io/api/users'
+curl -X GET 'https://example.dringo.io/api/users'
   -H 'Authorization: Token token=meowmeowmeow'
 ```
 
@@ -61,8 +61,8 @@ Remember — a happy user is an authenticated user!
 ## Get a Specific User
 
 ```shell
-curl "https://example.dringo.io/api/users/2"
-  -H "Authorization: Token token=meowmeowmeow"
+curl -X GET 'https://example.dringo.io/api/users/2'
+  -H 'Authorization: Token token=meowmeowmeow'
 ```
 
 > The above command returns JSON structured like this:

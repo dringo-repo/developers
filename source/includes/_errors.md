@@ -6,8 +6,8 @@ API clients must expect and gracefully handle transient errors, such as rate lim
 
 ```shell
 # With shell, you can just pass the correct header with each request
-curl "api_endpoint_here" -I
-  -H "Authorization: Token token=meowmeowmeow"
+curl 'api_endpoint_here' -I
+  -H 'Authorization: Token token=meowmeowmeow'
 
 # Result of to many requests
 HTTP/1.1 429 Too Many Requests
