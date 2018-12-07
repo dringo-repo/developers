@@ -224,7 +224,7 @@
             <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
           </li>
           <li>
-            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
+            <a href="#api-authentication" class="toc-h1 toc-link" data-title="API Authentication">API Authentication</a>
           </li>
           <li>
             <a href="#pagination" class="toc-h1 toc-link" data-title="Pagination">Pagination</a>
@@ -265,6 +265,9 @@
                   <li>
                     <a href="#submitting-a-batch-of-changes" class="toc-h2 toc-link" data-title="Submitting a batch of changes">Submitting a batch of changes</a>
                   </li>
+                  <li>
+                    <a href="#handling-submission-errors" class="toc-h2 toc-link" data-title="Handling submission errors">Handling submission errors</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -290,13 +293,13 @@
 <p>Welcome to the Dringo API! You can use our API to access Dringo API endpoints, which can use to get and update information on your account&#39;s users in our database.</p>
 
 <p>Currently, we only have language bindings in Shell. You can view code examples in the dark area to the right.</p>
-<h1 id='authentication'>Authentication</h1>
+<h1 id='api-authentication'>API Authentication</h1>
 <blockquote>
 <p>To authorize, use this code:</p>
 </blockquote>
 <pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: Token token=meowmeowmeow"</span>
+curl <span class="s1">'api_endpoint_here'</span>
+  -H <span class="s1">'Authorization: Token token=meowmeowmeow'</span>
 </code></pre>
 <blockquote>
 <p>Make sure to replace <code>meowmeowmeow</code> with your API key.</p>
@@ -311,16 +314,17 @@ curl <span class="s2">"api_endpoint_here"</span>
 <aside class="notice">
 You must replace <code>meowmeowmeow</code> with your personal API key.
 </aside>
-<h1 id='pagination'>Pagination</h1><pre class="highlight shell tab-shell"><code>curl <span class="s1">'https://example.dringo.io/api/users?page=2&amp;per_page=100'</span>
+<h1 id='pagination'>Pagination</h1><pre class="highlight shell tab-shell"><code>curl -X GET <span class="s1">'https://example.dringo.io/api/users?page=2&amp;per_page=100'</span>
 </code></pre>
-<p>Most collection APIs paginate their results and will be paginated to 30 items by default.  For some resources, you can also set a custom page size up to 100 with the <code>?per_page</code> parameter.</p>
-<h2 id='link-header'>Link Header</h2>
+<p>Most collection APIs paginate their results and will be paginated to 10 items by default.  For some resources, you can also set a custom page size up to 100 with the <code>?per_page</code> parameter.</p>
+<h2 id='link-header'>Link Header</h2><pre class="highlight plaintext"><code>X-Total-Count: 3400
+Link: &lt;https://example.dringo.io/api/users?page=15&amp;per_page=100&gt;; rel="next",
+  &lt;https://example.dringo.io/api/users?page=34&amp;per_page=100&gt;; rel="last",
+  &lt;https://example.dringo.io/api/users?page=1&amp;per_page=100&gt;; rel="first",
+  &lt;https://example.dringo.io/api/users?page=13&amp;per_page=100&gt;; rel="prev"
+</code></pre>
 <p>The Dringo API follows the <a href="https://tools.ietf.org/html/rfc5988">RFC5988 convention</a> of using the <code>Link</code> header to provide URLs for the <code>next</code> page. Follow this convention to retrieve the next page of data—please don&#39;t build the pagination URLs yourself!</p>
-<pre class="highlight plaintext"><code>Link: &lt;https://example.dringo.io/api/users?page=15&gt;; rel="next",
-  &lt;https://example.dringo.io/api/users?page=34&gt;; rel="last",
-  &lt;https://example.dringo.io/api/users?page=1&gt;; rel="first",
-  &lt;https://example.dringo.io/api/users?page=13&gt;; rel="prev"
-</code></pre>
+
 <p>The possible <code>rel</code> values are:</p>
 
 <table><thead>
@@ -351,8 +355,8 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 <h1 id='handling-errors'>Handling errors</h1>
 <p>API clients must expect and gracefully handle transient errors, such as rate limiting or server errors. We recommend baking 5xx and 429 response handling into your low-level HTTP client so your integration can handle most errors automatically.</p>
 <h2 id='rate-limiting-429-too-many-requests'>Rate limiting (429 Too Many Requests)</h2><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span> -I
-  -H <span class="s2">"Authorization: Token token=meowmeowmeow"</span>
+curl <span class="s1">'api_endpoint_here'</span> -I
+  -H <span class="s1">'Authorization: Token token=meowmeowmeow'</span>
 
 <span class="c"># Result of to many requests</span>
 HTTP/1.1 429 Too Many Requests
@@ -367,7 +371,7 @@ RateLimit-Reset: 1544130240
 <p><a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#5xx_Server_errors">list of 5xx server errors</a></p>
 <h2 id='404-not-found'>404 Not Found</h2>
 <p>API requests may 404 due to deleted or missing content.</p>
-<h1 id='users'>Users</h1><h2 id='get-all-users'>Get All Users</h2><pre class="highlight shell tab-shell"><code>curl <span class="s1">'https://example.dringo.io/api/users'</span>
+<h1 id='users'>Users</h1><h2 id='get-all-users'>Get All Users</h2><pre class="highlight shell tab-shell"><code>curl -X GET <span class="s1">'https://example.dringo.io/api/users'</span>
   -H <span class="s1">'Authorization: Token token=meowmeowmeow'</span>
 </code></pre>
 <blockquote>
@@ -429,8 +433,8 @@ RateLimit-Reset: 1544130240
 <aside class="success">
 Remember — a happy user is an authenticated user!
 </aside>
-<h2 id='get-a-specific-user'>Get a Specific User</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://example.dringo.io/api/users/2"</span>
-  -H <span class="s2">"Authorization: Token token=meowmeowmeow"</span>
+<h2 id='get-a-specific-user'>Get a Specific User</h2><pre class="highlight shell tab-shell"><code>curl -X GET <span class="s1">'https://example.dringo.io/api/users/2'</span>
+  -H <span class="s1">'Authorization: Token token=meowmeowmeow'</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -476,8 +480,15 @@ Remember — a happy user is an authenticated user!
 <td>The ID of the user to retrieve</td>
 </tr>
 </tbody></table>
-<h1 id='batch-users'>Batch Users</h1><h2 id='submitting-a-batch-of-changes'>Submitting a batch of changes</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://example.dringo.io/api/users/batch/update_or_create"</span>
-  -H <span class="s2">"Authorization: Token token=meowmeowmeow"</span>
+<h1 id='batch-users'>Batch Users</h1>
+<p>The Dringo API supports asynchronous updating and/or creating to efficiently handle large numbers of users. Asynchronous updating/creating consists of two stages:</p>
+
+<ol>
+<li>Submitting a batch of changes</li>
+<li>Checking the progress using <a href="#receipts">receipts</a></li>
+</ol>
+<h2 id='submitting-a-batch-of-changes'>Submitting a batch of changes</h2><pre class="highlight shell tab-shell"><code>curl -X POST <span class="s1">'https://example.dringo.io/api/users/batch/update_or_create'</span>
+  -H <span class="s1">'Authorization: Token token=meowmeowmeow'</span>
   -D <span class="s1">'{
         changes: [
           { "id": 1, "first_name": "Fresh", last_name: "Prince" },
@@ -590,7 +601,53 @@ Remember — a happy user is an authenticated user!
 <td>List of experience objects</td>
 </tr>
 </tbody></table>
-<h1 id='receipts'>Receipts</h1><h2 id='get-all-receipts'>Get All Receipts</h2><pre class="highlight shell tab-shell"><code>curl <span class="s1">'https://example.dringo.io/api/receipts'</span>
+<h2 id='handling-submission-errors'>Handling submission errors</h2>
+<p>The Batch User endpoint handles errors related to the user at a later time. However, it performs basic parameter validation at submission time.</p>
+<pre class="highlight shell tab-shell"><code>curl -X POST <span class="s1">'https://example.dringo.io/api/users/batch/update_or_create'</span>
+  -H <span class="s1">'Authorization: Token token=meowmeowmeow'</span>
+  -d <span class="s1">'{
+        "changes": []
+      }'</span>
+</code></pre>
+<p>Requests must contain a changes key that is a non-empty array. Additionally, there is a 100 document limit on the number of documents that may be submitted in a single batch as well as a maximum request size of 10 megabytes.</p>
+
+<blockquote>
+<p>The above command returns will fail with the following JSON response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Changes can't be blank"</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>If a request cannot be validated, an error response will be returned.</p>
+<h3 id='possible-errors'>Possible errors</h3>
+<ul>
+<li><code>Changes can&#39;t be blank</code></li>
+<li><code>Changes requested must be fewer than 100</code></li>
+<li><code>Changes requested must be smaller than 10mb</code></li>
+</ul>
+<h1 id='receipts'>Receipts</h1>
+<p>Receipts are records the report on the progress of a change requested during a <a href="#batch-users">batch user upload</a>. Each receipt will have a status value:</p>
+
+<table><thead>
+<tr>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>pending</td>
+<td>The requested changes have not yet been processed</td>
+</tr>
+<tr>
+<td>completed</td>
+<td>The requested changed were made successfully</td>
+</tr>
+<tr>
+<td>failed</td>
+<td>The requested changed were made successfully</td>
+</tr>
+</tbody></table>
+<h2 id='get-all-receipts'>Get All Receipts</h2><pre class="highlight shell tab-shell"><code>curl -X GET <span class="s1">'https://example.dringo.io/api/receipts?ids=1,2'</span>
   -H <span class="s1">'Authorization: Token token=meowmeowmeow'</span>
 </code></pre>
 <blockquote>
@@ -606,13 +663,22 @@ Remember — a happy user is an authenticated user!
         </span><span class="s2">"receipt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.dringo.io/api/receipts/1"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
       </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"failed"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Email can't be blank"</span><span class="p">],</span><span class="w">
+      </span><span class="s2">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"receipt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.dringo.io/api/receipts/2"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+      </span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves all receipts.</p>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>GET https://example.dringo.io/api/receipts?updated_at=1544135037&amp;ids=1,2,3</code></p>
+<p><code>GET https://example.dringo.io/api/receipts?updated_at=1544135037&amp;ids=&lt;ids&gt;</code></p>
 <h3 id='query-parameters'>Query Parameters</h3>
 <table><thead>
 <tr>
@@ -631,8 +697,8 @@ Remember — a happy user is an authenticated user!
 <aside class="success">
 Remember — a happy receipt is an authenticated receipt!
 </aside>
-<h2 id='get-a-specific-receipt'>Get a Specific Receipt</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://example.dringo.io/api/receipts/2"</span>
-  -H <span class="s2">"Authorization: Token token=meowmeowmeow"</span>
+<h2 id='get-a-specific-receipt'>Get a Specific Receipt</h2><pre class="highlight shell tab-shell"><code>curl -X GET <span class="s1">'https://example.dringo.io/api/receipts/2'</span>
+  -H <span class="s1">'Authorization: Token token=meowmeowmeow'</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
