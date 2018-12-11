@@ -14,6 +14,7 @@ includes:
   - users
   - batch_users
   - receipts
+  - single_sign_on
 
 search: true
 ---
