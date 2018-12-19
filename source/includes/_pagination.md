@@ -22,9 +22,9 @@ The possible `rel` values are:
 
 Name | Description
 -----------|-----------|
-`next` |The link relation for the immediate next page of results.
-`last` |The link relation for the last page of results.
-`first` |The link relation for the first page of results.
-`prev` |The link relation for the immediate previous page of results.
+`next` |The link relation for the next page of results
+`last` |The link relation for the last page of results
+`first` |The link relation for the first page of results
+`prev` |The link relation for the previous page of results
 
 If the `Link` header is blank, that's the last page. The Dringo API also provides the `X-Total-Count` header, which displays the total number of resources in the collection you are fetching.

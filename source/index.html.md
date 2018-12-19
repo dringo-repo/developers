@@ -21,6 +21,6 @@ search: true
 
 # Introduction
 
-Welcome to the Dringo API! You can use our API to access Dringo API endpoints, which can use to get and update information on your account's users in our database.
+Welcome to the Dringo API! You can use our API to access Dringo API endpoints, which you can use to get and update information on your account's users in our database, as well as set up single sign-on (SSO).
 
 Currently, we only have language bindings in Shell. You can view code examples in the dark area to the right.

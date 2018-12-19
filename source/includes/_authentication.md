@@ -37,11 +37,11 @@ These temporary session tokens will expire after 24 hours.
 
 Parameter | Description
 --------- | ---------
-key | The access token key.
-secret | The access token secret.
+key | The access token key
+secret | The access token secret
 
 <aside class="warning">
-Do not share your access token secret with anyone. Like all admins, these tokens will give any person to your user's data. Delete the access token immediately via your Dringo user settings page if you think its been compromised
+Do not share your access token secret with anyone.  If you think your access token has been compromised, delete the access token immediately via your Dringo account settings page.
 </aside>
 
 ## Using a session token

@@ -51,8 +51,8 @@ This endpoint retrieves all users.
 
 Parameter | Default | Description
 --------- | ------- | -----------
-updated_at | null | Specify a [Unix Epoch timestamp](https://en.wikipedia.org/wiki/Unix_time) to only return users updated after that timestamp.
-ids | null | A comma delaminated list of user ids (no spaces) which will limit results to only those ids.
+updated_at | null | Specify a [Unix Epoch timestamp](https://en.wikipedia.org/wiki/Unix_time) to only return users updated after that timestamp
+ids | null | A comma delimited list of user ids (no spaces) which will limit results to only those ids
 
 <aside class="success">
 Remember — a happy user is an authenticated user!
