@@ -290,10 +290,10 @@
               </ul>
           </li>
           <li>
-            <a href="#user-single-sign-on" class="toc-h1 toc-link" data-title="User Single Sign On">User Single Sign On</a>
+            <a href="#user-single-sign-on-sso" class="toc-h1 toc-link" data-title="User Single Sign On (SSO)">User Single Sign On (SSO)</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#generate-a-single-sign-on-link" class="toc-h2 toc-link" data-title="Generate a single sign on link">Generate a single sign on link</a>
+                    <a href="#generate-an-sso-link" class="toc-h2 toc-link" data-title="Generate an SSO link">Generate an SSO link</a>
                   </li>
               </ul>
           </li>
@@ -306,7 +306,7 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the Dringo API! You can use our API to access Dringo API endpoints, which can use to get and update information on your account&#39;s users in our database.</p>
+<p>Welcome to the Dringo API! You can use our API to access Dringo API endpoints, which you can use to get and update information on your account&#39;s users in our database, as well as set up single sign-on (SSO).</p>
 
 <p>Currently, we only have language bindings in Shell. You can view code examples in the dark area to the right.</p>
 <h1 id='api-authentication'>API Authentication</h1>
@@ -345,16 +345,16 @@ These temporary session tokens will expire after 24 hours.
 </thead><tbody>
 <tr>
 <td>key</td>
-<td>The access token key.</td>
+<td>The access token key</td>
 </tr>
 <tr>
 <td>secret</td>
-<td>The access token secret.</td>
+<td>The access token secret</td>
 </tr>
 </tbody></table>
 
 <aside class="warning">
-Do not share your access token secret with anyone. Like all admins, these tokens will give any person to your user's data. Delete the access token immediately via your Dringo user settings page if you think its been compromised
+Do not share your access token secret with anyone.  If you think your access token has been compromised, delete the access token immediately via your Dringo account settings page.
 </aside>
 <h2 id='using-a-session-token'>Using a session token</h2>
 <blockquote>
@@ -392,30 +392,30 @@ Link: &lt;https://example.dringo.io/api/users?page=15&amp;per_page=100&gt;; rel=
 </thead><tbody>
 <tr>
 <td><code>next</code></td>
-<td>The link relation for the immediate next page of results.</td>
+<td>The link relation for the next page of results</td>
 </tr>
 <tr>
 <td><code>last</code></td>
-<td>The link relation for the last page of results.</td>
+<td>The link relation for the last page of results</td>
 </tr>
 <tr>
 <td><code>first</code></td>
-<td>The link relation for the first page of results.</td>
+<td>The link relation for the first page of results</td>
 </tr>
 <tr>
 <td><code>prev</code></td>
-<td>The link relation for the immediate previous page of results.</td>
+<td>The link relation for the previous page of results</td>
 </tr>
 </tbody></table>
 
 <p>If the <code>Link</code> header is blank, that&#39;s the last page. The Dringo API also provides the <code>X-Total-Count</code> header, which displays the total number of resources in the collection you are fetching.</p>
 <h1 id='handling-errors'>Handling errors</h1>
-<p>API clients must expect and gracefully handle transient errors, such as rate limiting or server errors. We recommend baking 5xx and 429 response handling into your low-level HTTP client so your integration can handle most errors automatically.</p>
+<p>API clients must expect and gracefully handle transient errors, such as rate limiting or server errors. We recommend baking 429 and 5xx response handling into your low-level HTTP client so your integration can handle most errors automatically.</p>
 <h2 id='rate-limiting-429-too-many-requests'>Rate limiting (429 Too Many Requests)</h2><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
 curl <span class="s1">'api_endpoint_here'</span> -I
   -H <span class="s1">'Authorization: Token token=meowmeowmeow'</span>
 
-<span class="c"># Result of to many requests</span>
+<span class="c"># Result of too many requests</span>
 HTTP/1.1 429 Too Many Requests
 RateLimit-Limit: 1
 RateLimit-Remaining: 0
@@ -423,7 +423,7 @@ RateLimit-Reset: 1544130240
 </code></pre>
 <p>You can perform up to 60 requests per 1-minute period from the same IP address. If you exceed this limit, you&#39;ll get a <a href="http://tools.ietf.org/html/draft-nottingham-http-new-status-02#section-4">429 Too Many Requests</a> response for subsequent requests. Check the <code>RateLimit-Reset</code> header to see how many seconds to wait before retrying the request.</p>
 <h2 id='5xx-server-error'>5xx Server Error</h2>
-<p>If Dringo is having trouble, you will get a response with a 5xx status code indicating a server error.</p>
+<p>If Dringo is having trouble, you will get a response with a 5xx status code indicating a server error.  Please email support @ <a href="mailto:support@dringo.io">support@dringo.io</a> if you are experiencing 5xx errors.</p>
 
 <p><a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#5xx_Server_errors">list of 5xx server errors</a></p>
 <h2 id='404-not-found'>404 Not Found</h2>
@@ -478,12 +478,12 @@ RateLimit-Reset: 1544130240
 <tr>
 <td>updated_at</td>
 <td>null</td>
-<td>Specify a <a href="https://en.wikipedia.org/wiki/Unix_time">Unix Epoch timestamp</a> to only return users updated after that timestamp.</td>
+<td>Specify a <a href="https://en.wikipedia.org/wiki/Unix_time">Unix Epoch timestamp</a> to only return users updated after that timestamp</td>
 </tr>
 <tr>
 <td>ids</td>
 <td>null</td>
-<td>A comma delaminated list of user ids (no spaces) which will limit results to only those ids.</td>
+<td>A comma delimited list of user ids (no spaces) which will limit results to only those ids</td>
 </tr>
 </tbody></table>
 
@@ -579,7 +579,7 @@ Remember — a happy user is an authenticated user!
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves a specific receipt.</p>
+<p>This endpoint retrieves a specific receipt.  Requests must contain a changes key that is a non-empty array. Additionally, there is a 100 document limit on the number of documents that may be submitted in a single batch as well as a maximum request size of 10 megabytes.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>POST https://example.dringo.io/api/users/batch/update_or_create</code></p>
 <h3 id='post-data'>POST Data</h3>
@@ -591,7 +591,7 @@ Remember — a happy user is an authenticated user!
 </thead><tbody>
 <tr>
 <td>changes</td>
-<td>Array of JSON objects containing changes to be implemented.</td>
+<td>Array of JSON objects containing changes to be implemented</td>
 </tr>
 </tbody></table>
 <h4 id='change-objects'>Change objects</h4>
@@ -605,7 +605,7 @@ Remember — a happy user is an authenticated user!
 <tr>
 <td>id</td>
 <td>Integer</td>
-<td>ID of the user to update. If left blank, Dringo will attempt to create a user.</td>
+<td>ID of the user to update. If left blank, Dringo will attempt to create a user</td>
 </tr>
 <tr>
 <td>first_name</td>
@@ -666,8 +666,6 @@ Remember — a happy user is an authenticated user!
         "changes": []
       }'</span>
 </code></pre>
-<p>Requests must contain a changes key that is a non-empty array. Additionally, there is a 100 document limit on the number of documents that may be submitted in a single batch as well as a maximum request size of 10 megabytes.</p>
-
 <blockquote>
 <p>The above command returns will fail with the following JSON response:</p>
 </blockquote>
@@ -683,7 +681,7 @@ Remember — a happy user is an authenticated user!
 <li><code>Changes requested must be smaller than 10mb</code></li>
 </ul>
 <h1 id='receipts'>Receipts</h1>
-<p>Receipts are records the report on the progress of a change requested during a <a href="#batch-users">batch user upload</a>. Each receipt will have a status value:</p>
+<p>Receipts report the progress of a <a href="#batch-users">batch user upload</a>. Each receipt will have a status value:</p>
 
 <table><thead>
 <tr>
@@ -697,11 +695,11 @@ Remember — a happy user is an authenticated user!
 </tr>
 <tr>
 <td>completed</td>
-<td>The requested changed were made successfully</td>
+<td>The requested changes were made successfully</td>
 </tr>
 <tr>
 <td>failed</td>
-<td>The requested changed were made successfully</td>
+<td>The requested changes failed</td>
 </tr>
 </tbody></table>
 <h2 id='get-all-receipts'>Get All Receipts</h2><pre class="highlight shell tab-shell"><code>curl -X GET <span class="s1">'https://example.dringo.io/api/receipts?ids=1,2'</span>
@@ -747,7 +745,7 @@ Remember — a happy user is an authenticated user!
 <tr>
 <td>ids</td>
 <td>null</td>
-<td>A comma delaminated list of receipt ids (no spaces) which will limit results to only those ids.</td>
+<td>A comma delimited list of receipt ids (no spaces) which will limit results to only those ids</td>
 </tr>
 </tbody></table>
 
@@ -785,9 +783,9 @@ Remember — a happy receipt is an authenticated receipt!
 <td>The ID of the receipt to retrieve</td>
 </tr>
 </tbody></table>
-<h1 id='user-single-sign-on'>User Single Sign On</h1>
-<p>You can use the Dringo API to generate Single Sign On Links for your user. This could allow you automatically log your users into Dringo from your organization&#39;s web portal.</p>
-<h2 id='generate-a-single-sign-on-link'>Generate a single sign on link</h2><pre class="highlight shell tab-shell"><code>curl -X GET <span class="s1">'https://example.dringo.io//api/users/autologins'</span>
+<h1 id='user-single-sign-on-sso'>User Single Sign On (SSO)</h1>
+<p>You can use the Dringo API to generate SSO links for your users. This allows you to dynamically provide automatic login links which can be used in your organization&#39;s web portal.</p>
+<h2 id='generate-an-sso-link'>Generate an SSO link</h2><pre class="highlight shell tab-shell"><code>curl -X GET <span class="s1">'https://example.dringo.io//api/users/autologins'</span>
   -H <span class="s1">'Authorization: Token token=meowmeowmeow'</span>
   - D <span class="s1">'{
          "id": 1
@@ -800,10 +798,10 @@ Remember — a happy receipt is an authenticated receipt!
   </span><span class="s2">"autologin_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.dringo.io//user/autologin?temporary_token=xyz"</span><span class="p">,</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint will generate temporary single sign on link for the user associated with the id provided in the request.</p>
+<p>This endpoint will generate a temporary SSO link for the user associated with the id provided in the request.</p>
 
 <aside class="notice">
-These single sign on links will expire after the first use or if another is generated.
+These SSO links will expire after first use or if another is generated.
 </aside>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>GET https://example.dringo.io//api/users/autologins</code></p>
@@ -818,7 +816,7 @@ These single sign on links will expire after the first use or if another is gene
 <tr>
 <td>id</td>
 <td>null</td>
-<td>The id of the user you want to generate a single sign on link for.</td>
+<td>The id of the user you want to generate an SSO link for</td>
 </tr>
 </tbody></table>
 
