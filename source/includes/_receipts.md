@@ -1,12 +1,12 @@
 # Receipts
 
-Receipts are records the report on the progress of a change requested during a [batch user upload](#batch-users). Each receipt will have a status value:
+Receipts report the progress of a [batch user upload](#batch-users). Each receipt will have a status value:
 
 Status | Description
 --------- | ---------
 pending | The requested changes have not yet been processed
-completed | The requested changed were made successfully
-failed | The requested changed were made successfully
+completed | The requested changes were made successfully
+failed | The requested changes failed
 
 ## Get All Receipts
 
@@ -52,7 +52,7 @@ This endpoint retrieves all receipts.
 
 Parameter | Default | Description
 --------- | --------- | ---------
-ids | null | A comma delaminated list of receipt ids (no spaces) which will limit results to only those ids.
+ids | null | A comma delimited list of receipt ids (no spaces) which will limit results to only those ids
 
 <aside class="success">
 Remember — a happy receipt is an authenticated receipt!

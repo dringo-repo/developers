@@ -1,8 +1,8 @@
-# User Single Sign On
+# User Single Sign On (SSO)
 
-You can use the Dringo API to generate Single Sign On Links for your user. This could allow you automatically log your users into Dringo from your organization's web portal.
+You can use the Dringo API to generate SSO links for your users. This allows you to dynamically provide automatic login links which can be used in your organization's web portal.
 
-## Generate a single sign on link
+## Generate an SSO link
 
 ```shell
 curl -X GET 'https://example.dringo.io//api/users/autologins'
@@ -20,10 +20,10 @@ curl -X GET 'https://example.dringo.io//api/users/autologins'
 }
 ```
 
-This endpoint will generate temporary single sign on link for the user associated with the id provided in the request.
+This endpoint will generate a temporary SSO link for the user associated with the id provided in the request.
 
 <aside class="notice">
-These single sign on links will expire after the first use or if another is generated.
+These SSO links will expire after first use or if another is generated.
 </aside>
 
 ### HTTP Request
@@ -34,4 +34,4 @@ These single sign on links will expire after the first use or if another is gene
 
 Parameter | Default | Description
 --------- | --------- | ---------
-id | null | The id of the user you want to generate a single sign on link for.
+id | null | The id of the user you want to generate an SSO link for

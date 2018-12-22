@@ -1,6 +1,6 @@
 # Handling errors
 
-API clients must expect and gracefully handle transient errors, such as rate limiting or server errors. We recommend baking 5xx and 429 response handling into your low-level HTTP client so your integration can handle most errors automatically.
+API clients must expect and gracefully handle transient errors, such as rate limiting or server errors. We recommend baking 429 and 5xx response handling into your low-level HTTP client so your integration can handle most errors automatically.
 
 ## Rate limiting (429 Too Many Requests)
 
@@ -9,7 +9,7 @@ API clients must expect and gracefully handle transient errors, such as rate lim
 curl 'api_endpoint_here' -I
   -H 'Authorization: Token token=meowmeowmeow'
 
-# Result of to many requests
+# Result of too many requests
 HTTP/1.1 429 Too Many Requests
 RateLimit-Limit: 1
 RateLimit-Remaining: 0
@@ -20,7 +20,7 @@ You can perform up to 60 requests per 1-minute period from the same IP address. 
 
 ## 5xx Server Error
 
-If Dringo is having trouble, you will get a response with a 5xx status code indicating a server error.
+If Dringo is having trouble, you will get a response with a 5xx status code indicating a server error.  Please email support @ <support@dringo.io> if you are experiencing 5xx errors.
 
 [list of 5xx server errors](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#5xx_Server_errors)
 

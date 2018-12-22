@@ -45,7 +45,7 @@ curl -X POST 'https://example.dringo.io/api/users/batch/update_or_create'
 }
 ```
 
-This endpoint retrieves a specific receipt.
+This endpoint retrieves a specific receipt.  Requests must contain a changes key that is a non-empty array. Additionally, there is a 100 document limit on the number of documents that may be submitted in a single batch as well as a maximum request size of 10 megabytes.
 
 ### HTTP Request
 
@@ -55,13 +55,13 @@ This endpoint retrieves a specific receipt.
 
 Parameter | Description
 --------- | -----------
-changes | Array of JSON objects containing changes to be implemented.
+changes | Array of JSON objects containing changes to be implemented
 
 #### Change objects
 
 Field | Type |Description
 --------- | ----------- | -----------
-id | Integer | ID of the user to update. If left blank, Dringo will attempt to create a user.
+id | Integer | ID of the user to update. If left blank, Dringo will attempt to create a user
 first_name | String | First name of user
 last_name | String | Last name of user
 emails | Array | List of email objects
@@ -84,8 +84,6 @@ curl -X POST 'https://example.dringo.io/api/users/batch/update_or_create'
         "changes": []
       }'
 ```
-
-Requests must contain a changes key that is a non-empty array. Additionally, there is a 100 document limit on the number of documents that may be submitted in a single batch as well as a maximum request size of 10 megabytes.
 
 > The above command returns will fail with the following JSON response:
 
