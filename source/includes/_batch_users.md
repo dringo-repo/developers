@@ -62,6 +62,7 @@ changes | Array of JSON objects containing changes to be implemented
 Field | Type |Description
 --------- | ----------- | -----------
 id | Integer | ID of the user to update. If left blank, Dringo will attempt to create a user
+crm_id | String | Your tracking id for this user
 first_name | String | First name of user
 last_name | String | Last name of user
 emails | Array | List of email objects
@@ -69,6 +70,7 @@ national_admin | Boolean | If true, the user will have national admin privileges
 chapter_admin | Boolean | If true, the user will have chapter admin privileges
 chapter_name | String | Name of the user's chapter
 university_name | String | Name of the user's university
+location_name | String | Name of the user's location
 alumni | Boolean | If true, the user will be marked as an alumni
 graduation_year | String | Graduation year of the user, must be 4 characters
 experiences | Array | List of experience objects
