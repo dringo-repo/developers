@@ -18,6 +18,7 @@ curl -X GET 'https://example.dringo.io/api/users'
       "last_name": "Smith",
       "updated_at": 1540662498,
       "created_at": 1540662498,
+      "location": "Bel-Air, CA",
       "emails": [
         { "value": "will@smith.co", "primary": true },
         { "value": "prince@ofbelair.co", "primary": false }
@@ -28,6 +29,10 @@ curl -X GET 'https://example.dringo.io/api/users'
       "university_name": "University of California, Berkley",
       "alumni": true,
       "graduation_year": "1986",
+      "industry": {
+        "code": 1234,
+        "name": "Prince"
+      },
       "experiences": [
         {
           "company": "General Mills",
@@ -74,6 +79,7 @@ curl -X GET 'https://example.dringo.io/api/users/2'
   "last_name": "Smith",
   "updated_at": 1540662498,
   "created_at": 1540662498,
+  "location": "Bel-Air, CA",
   "emails": [
     { "value": "will@smith.co", "primary": true },
     { "value": "prince@ofbelair.co", "primary": false }
@@ -84,6 +90,10 @@ curl -X GET 'https://example.dringo.io/api/users/2'
   "university_name": "University of California, Berkley",
   "alumni": true,
   "graduation_year": "1986",
+  "industry": {
+    "code": 1234,
+    "name": "Prince"
+  },
   "experiences": [
     {
       "company": "General Mills",
