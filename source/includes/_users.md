@@ -14,6 +14,7 @@ curl -X GET 'https://example.dringo.io/api/users'
   "users": [
     {
       "id": 1,
+      "crm_id": "1234",
       "first_name": "Will",
       "last_name": "Smith",
       "updated_at": 1540662498,
@@ -75,6 +76,7 @@ curl -X GET 'https://example.dringo.io/api/users/2'
 ```json
 {
   "id": 1,
+  "crm_id": "1234",
   "first_name": "Will",
   "last_name": "Smith",
   "updated_at": 1540662498,
