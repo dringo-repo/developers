@@ -8,7 +8,7 @@ The Dringo API supports asynchronous updating and/or creating to efficiently han
 ## Submitting a batch of changes
 
 ```shell
-curl -X POST 'https://example.dringo.io/api/users/batch/update_or_create'
+curl -X POST 'https://example.dringo.io/api/users/batches/update_or_create'
   -H 'Authorization: Token token=meowmeowmeow'
   -D '{
         changes: [
@@ -49,7 +49,7 @@ This endpoint retrieves a specific receipt.  Requests must contain a changes key
 
 ### HTTP Request
 
-`POST https://example.dringo.io/api/users/batch/update_or_create`
+`POST https://example.dringo.io/api/users/batches/update_or_create`
 
 ### POST Data
 
@@ -80,7 +80,7 @@ experiences | Array | List of experience objects
 The Batch User endpoint handles errors related to the user at a later time. However, it performs basic parameter validation at submission time.
 
 ```shell
-curl -X POST 'https://example.dringo.io/api/users/batch/update_or_create'
+curl -X POST 'https://example.dringo.io/api/users/batches/update_or_create'
   -H 'Authorization: Token token=meowmeowmeow'
   -d '{
         "changes": []
