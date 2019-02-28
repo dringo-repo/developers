@@ -556,7 +556,7 @@ Remember — a happy user is an authenticated user!
 <li>Submitting a batch of changes</li>
 <li>Checking the progress using <a href="#receipts">receipts</a></li>
 </ol>
-<h2 id='submitting-a-batch-of-changes'>Submitting a batch of changes</h2><pre class="highlight shell tab-shell"><code>curl -X POST <span class="s1">'https://example.dringo.io/api/users/batch/update_or_create'</span>
+<h2 id='submitting-a-batch-of-changes'>Submitting a batch of changes</h2><pre class="highlight shell tab-shell"><code>curl -X POST <span class="s1">'https://example.dringo.io/api/users/batches/update_or_create'</span>
   -H <span class="s1">'Authorization: Token token=meowmeowmeow'</span>
   -D <span class="s1">'{
         changes: [
@@ -593,7 +593,7 @@ Remember — a happy user is an authenticated user!
 </span></code></pre>
 <p>This endpoint retrieves a specific receipt.  Requests must contain a changes key that is a non-empty array. Additionally, there is a 100 document limit on the number of documents that may be submitted in a single batch as well as a maximum request size of 10 megabytes.</p>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>POST https://example.dringo.io/api/users/batch/update_or_create</code></p>
+<p><code>POST https://example.dringo.io/api/users/batches/update_or_create</code></p>
 <h3 id='post-data'>POST Data</h3>
 <table><thead>
 <tr>
@@ -682,7 +682,7 @@ Remember — a happy user is an authenticated user!
 </tbody></table>
 <h2 id='handling-submission-errors'>Handling submission errors</h2>
 <p>The Batch User endpoint handles errors related to the user at a later time. However, it performs basic parameter validation at submission time.</p>
-<pre class="highlight shell tab-shell"><code>curl -X POST <span class="s1">'https://example.dringo.io/api/users/batch/update_or_create'</span>
+<pre class="highlight shell tab-shell"><code>curl -X POST <span class="s1">'https://example.dringo.io/api/users/batches/update_or_create'</span>
   -H <span class="s1">'Authorization: Token token=meowmeowmeow'</span>
   -d <span class="s1">'{
         "changes": []
